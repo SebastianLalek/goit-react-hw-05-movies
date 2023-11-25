@@ -1,39 +1,25 @@
-import axios from 'axios';
-import { apiKey, apiUrl } from './consts/theMoviesDB';
-
-function Movies() {
-  const url = apiUrl;
-
-  const params = {
-    api_key: apiKey,
-    query: 'panda',
-  };
-  const films = async () => {
-    const response = await axios
-      .get(url, { params })
-      .then(result => console.log(result))
-      .catch(err => console.log(err));
-    console.log(response);
-  };
-
-  console.log(films());
-}
-
-Movies();
+import Header from './header/Header';
+import { Route, Routes } from 'react-router-dom';
+import NotFound from './notFound/NotFound';
+import Home from './home/Home';
+import Movies from './movies/Movies';
 
 export const App = () => {
   return (
     <div
       style={{
-        height: '100vh',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
         fontSize: 40,
         color: '#010101',
       }}
     >
-      React homework template
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 };
