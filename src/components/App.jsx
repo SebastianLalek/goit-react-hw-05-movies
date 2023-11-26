@@ -8,14 +8,7 @@ import NotFound from './notFound/NotFound';
 
 export const App = () => {
   return (
-    <div
-      style={{
-        // display: 'flex',
-        // justifyContent: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    >
+    <div>
       <Header />
       <Suspense fallback={<h3>Loading...</h3>}>
       <Routes>

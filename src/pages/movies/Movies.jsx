@@ -1,3 +1,4 @@
+import FilmList from "components/filmList/FilmList";
 import { apiRequest } from "js/apiRequest";
 import { useEffect, useState } from "react";
 
@@ -32,10 +33,6 @@ function submitQuery(e) {
     <button>Search</button>
   </form>
 
-  <ul>
-      {films.map(film => (
-        <li key={film.id}>{film.original_title}</li>
-      ))}
-    </ul>
+<FilmList list={films} />
   </>);
 }
