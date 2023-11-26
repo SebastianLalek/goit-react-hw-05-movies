@@ -13,8 +13,5 @@ export const apiRequest = async (endpoint, additionalParams) => {
     .then(result => result.data.results)
     .catch(err => console.log(err));
 
-  //   console.log(result);
   return result;
 };
-
-// console.log(apiRequest('search/movie', { query: 'panda' }));
