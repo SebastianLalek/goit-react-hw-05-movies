@@ -10,8 +10,8 @@ export const App = () => {
   return (
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'center',
+        // display: 'flex',
+        // justifyContent: 'center',
         fontSize: 40,
         color: '#010101',
       }}
