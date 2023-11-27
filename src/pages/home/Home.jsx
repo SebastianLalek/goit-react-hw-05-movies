@@ -7,17 +7,17 @@ export default function Home() {
   const [films, setFilms] = useState([]);
 
   useEffect(() => {
-    async function fetchTrending(){
-      const data = await apiRequest('trending/movie/day', {})
-      setFilms([...data])
+    async function fetchTrending() {
+      const data = await apiRequest('trending/movie/day');
+      setFilms([...data.results]);
     }
-    fetchTrending()
-  },[])
+    fetchTrending();
+  }, []);
 
   return (
     <>
       <h2>Trending today</h2>
-        <FilmList list={films} />
+      <FilmList list={films} />
     </>
   );
 }

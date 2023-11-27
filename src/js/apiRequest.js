@@ -10,7 +10,7 @@ export const apiRequest = async (endpoint, additionalParams) => {
   };
   const result = await axios
     .get(url, { params })
-    .then(result => result.data.results)
+    .then(result => result.data)
     .catch(err => console.log(err));
 
   return result;
