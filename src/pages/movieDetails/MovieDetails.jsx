@@ -1,6 +1,6 @@
 import { apiRequest } from 'js/apiRequest';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 
 export default function MovieDetails() {
   const [movieDetails, setMovieDetails] = useState({});
@@ -9,7 +9,7 @@ export default function MovieDetails() {
   useEffect(() => {
     async function fetchFilms() {
       const data = await apiRequest(`movie/${movieId}`);
-      console.log(data);
+      // console.log(data);
       setMovieDetails(data);
     }
 
@@ -34,6 +34,15 @@ export default function MovieDetails() {
           <span>{genre.name} </span>
         ))} */}
       </p>
+      <div>
+        <h4>Additional informations</h4>
+        <ul>
+          <li>
+            <Link to="cast">Cast</Link>{' '}
+          </li>
+          <Outlet />
+        </ul>
+      </div>
     </div>
   );
 }
