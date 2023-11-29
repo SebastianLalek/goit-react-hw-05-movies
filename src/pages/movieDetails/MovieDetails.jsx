@@ -18,7 +18,7 @@ export default function MovieDetails() {
     }
 
     fetchFilms();
-  }, []);
+  }, [movieId]);
 
   const { original_title, overview, vote_average, poster_path } = movieDetails;
 
