@@ -4,29 +4,33 @@ import { apiRequest } from 'js/apiRequest';
 import { useEffect, useState } from 'react';
 
 import css from './Movies.module.css';
+import { useSearchParams } from 'react-router-dom';
 
 export default function Movies() {
   const [films, setFilms] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
-
-  useEffect(() => {
-    async function fetchFilms() {
-      if (searchQuery === '') {
-        return;
-      }
-      const data = await apiRequest('search/movie', { query: searchQuery });
-      setFilms([...data.results]);
-    }
-
-    fetchFilms();
-  }, [searchQuery]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   function submitQuery(e) {
     e.preventDefault();
     const input = e.target.query.value;
 
-    setSearchQuery(input);
+    setSearchParams({ query: input });
   }
+
+  useEffect(() => {
+    async function fetchFilms() {
+      const query = searchParams.get('query');
+      if (!query) {
+        return;
+      }
+      const data = await apiRequest('search/movie', { query: query });
+      console.log(data);
+      setFilms([...data.results]);
+      console.log(searchParams);
+    }
+
+    fetchFilms();
+  }, [searchParams]);
 
   return (
     <>

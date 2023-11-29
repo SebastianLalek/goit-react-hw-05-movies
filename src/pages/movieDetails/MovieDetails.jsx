@@ -1,12 +1,15 @@
 import { apiRequest } from 'js/apiRequest';
-import { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Suspense, useEffect, useState } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
 import css from './MovieDetails.module.css';
 
 export default function MovieDetails() {
   const [movieDetails, setMovieDetails] = useState({});
   const { movieId } = useParams();
+
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/movies';
 
   useEffect(() => {
     async function fetchFilms() {
@@ -17,16 +20,21 @@ export default function MovieDetails() {
     fetchFilms();
   }, []);
 
-  const { original_title, overview, vote_average, poster_path, genres } =
-    movieDetails;
+  const { original_title, overview, vote_average, poster_path } = movieDetails;
 
   return (
     <>
+      <Link className={css.back} to={backLinkHref}>
+        Go back
+      </Link>
       <div className={css.movie}>
-        <img
-          className={css.image}
-          src={`https://image.tmdb.org/t/p/original${poster_path}`}
-        />
+        {poster_path !== undefined && (
+          <img
+            className={css.image}
+            src={`https://image.tmdb.org/t/p/original${poster_path}`}
+            alt=""
+          />
+        )}
         <div className={css.movieDetails}>
           <h2>{original_title}</h2>
           <p>User Score: {vote_average}</p>
@@ -45,7 +53,9 @@ export default function MovieDetails() {
               <Link to="reviews">Reviews</Link>
             </li>
           </ul>
-          <Outlet />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Outlet />
+          </Suspense>
         </div>
       </div>
     </>

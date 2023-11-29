@@ -25,3 +25,9 @@
   text-decoration: none;
   margin-right: 15px;
 }
+
+.back {
+  margin-left: 15px;
+  text-decoration: none;
+  font-style: italic;
+}
