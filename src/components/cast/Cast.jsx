@@ -26,6 +26,7 @@ export default function Cast() {
               <img
                 className={css.image}
                 src={`https://image.tmdb.org/t/p/original${cast.profile_path}`}
+                alt=""
               />
             )}
             <div>
