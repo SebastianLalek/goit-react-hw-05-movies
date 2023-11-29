@@ -24,9 +24,7 @@ export default function Movies() {
         return;
       }
       const data = await apiRequest('search/movie', { query: query });
-      console.log(data);
       setFilms([...data.results]);
-      console.log(searchParams);
     }
 
     fetchFilms();
