@@ -1,5 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 
+import PropTypes from 'prop-types';
+
 import css from './FilmList.module.css';
 
 export default function FilmList({ list }) {
@@ -21,3 +23,7 @@ export default function FilmList({ list }) {
     </ul>
   );
 }
+
+FilmList.propTypes = {
+  list: PropTypes.array,
+};
