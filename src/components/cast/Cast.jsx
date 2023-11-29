@@ -11,7 +11,6 @@ export default function Cast() {
   useEffect(() => {
     async function fetchCredits() {
       const data = await apiRequest(`movie/${movieId}/credits`);
-      console.log(data);
       setMovieCast([...data.cast]);
     }
 
@@ -23,10 +22,12 @@ export default function Cast() {
       <ul className={css.list}>
         {movieCast.map(cast => (
           <li className={css.item} key={cast.cast_id}>
-            <img
-              className={css.image}
-              src={`https://image.tmdb.org/t/p/original${cast.profile_path}`}
-            />
+            {cast.profile_path !== null && (
+              <img
+                className={css.image}
+                src={`https://image.tmdb.org/t/p/original${cast.profile_path}`}
+              />
+            )}
             <div>
               <p className={css.actor}>{cast.name}</p>
               <p className={css.character}>{cast.character}</p>
