@@ -1,0 +1,27 @@
+.movie {
+  display: flex;
+}
+
+.image {
+  width: 300px;
+  margin: 15px;
+}
+
+.movieDetails {
+  width: 50vw;
+}
+
+.more {
+  margin: 15px;
+}
+
+.linkList {
+  display: flex;
+  list-style: none;
+  text-decoration: none;
+}
+
+.linkList a {
+  text-decoration: none;
+  margin-right: 15px;
+}
